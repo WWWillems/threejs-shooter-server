@@ -25,6 +25,24 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
+  socket.broadcast.emit("user connected", {
+    id: socket.id,
+    userId: socket.id,
+    message: "Welcome to the server",
+  });
+
+  socket.on("player position", (payload) => {
+    socket.broadcast.emit("player position", {
+      id: socket.id,
+      userId: socket.id,
+      ...payload,
+    });
+  });
+
+  socket.on("ping", (message) => {
+    console.log("PONG:", message);
+  });
+
   socket.on("join room", (roomId) => {
     socket.join(roomId);
     console.log(`User ${socket.id} joined room ${roomId}`);
