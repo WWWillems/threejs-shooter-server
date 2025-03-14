@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch index.ts",
+    "start": "node index.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.8.1",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.3"
+  }
+}
