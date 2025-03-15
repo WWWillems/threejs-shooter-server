@@ -40,6 +40,23 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on(GAME_EVENTS.WEAPON.SWITCH, (payload) => {
+    console.log("WEAPON SWITCH", payload);
+    socket.broadcast.emit(GAME_EVENTS.WEAPON.SWITCH, {
+      id: socket.id,
+      userId: socket.id,
+      ...payload,
+    });
+  });
+
+  socket.on(GAME_EVENTS.WEAPON.SHOOT, (payload) => {
+    socket.broadcast.emit(GAME_EVENTS.WEAPON.SHOOT, {
+      id: socket.id,
+      userId: socket.id,
+      ...payload,
+    });
+  });
+
   socket.on("ping", (message) => {
     console.log("PONG:", message);
   });
