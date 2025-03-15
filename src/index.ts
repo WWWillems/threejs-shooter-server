@@ -40,6 +40,14 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on(GAME_EVENTS.PLAYER.STATUS, (payload) => {
+    socket.broadcast.emit(GAME_EVENTS.PLAYER.STATUS, {
+      id: socket.id,
+      userId: socket.id,
+      ...payload,
+    });
+  });
+
   socket.on(GAME_EVENTS.WEAPON.SWITCH, (payload) => {
     socket.broadcast.emit(GAME_EVENTS.WEAPON.SWITCH, {
       id: socket.id,
