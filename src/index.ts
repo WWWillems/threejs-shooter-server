@@ -1,6 +1,7 @@
 import express from "express";
 import * as http from "http";
 import { Server as SocketIO } from "socket.io";
+import { GAME_EVENTS } from "./events";
 
 const app = express();
 const server = http.createServer(app);
@@ -25,14 +26,14 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
-  socket.broadcast.emit("user connected", {
+  socket.broadcast.emit(GAME_EVENTS.USER.CONNECTED, {
     id: socket.id,
     userId: socket.id,
     message: "Welcome to the server",
   });
 
-  socket.on("player position", (payload) => {
-    socket.broadcast.emit("player position", {
+  socket.on(GAME_EVENTS.PLAYER.POSITION, (payload) => {
+    socket.broadcast.emit(GAME_EVENTS.PLAYER.POSITION, {
       id: socket.id,
       userId: socket.id,
       ...payload,
@@ -62,5 +63,11 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
+
+    socket.broadcast.emit(GAME_EVENTS.USER.DISCONNECTED, {
+      id: socket.id,
+      userId: socket.id,
+      message: "Welcome to the server",
+    });
   });
 });

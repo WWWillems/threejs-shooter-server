@@ -1,0 +1,14 @@
+---
+description: 
+globs: *.ts
+alwaysApply: false
+---
+# Project Details
+
+## Summary
+Isometric multiplayer shooter game using sockets.
+
+## Technologies
+- Typescript
+- Express server
+- Socket.io
