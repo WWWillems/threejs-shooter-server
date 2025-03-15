@@ -2,8 +2,10 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
-    "start": "node ./src/index.ts"
+    "build": "pkgroll",
+    "start": "node ./dist/index.mjs"
   },
+  "exports": "./dist/index.mjs",
   "dependencies": {
     "express": "^4.21.2",
     "http": "^0.0.1-security",
@@ -11,6 +13,7 @@
     "typescript": "^5.8.2"
   },
   "devDependencies": {
+    "pkgroll": "^2.11.2",
     "tsx": "^4.19.3"
   }
 }
